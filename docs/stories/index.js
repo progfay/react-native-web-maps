@@ -5,6 +5,9 @@ import MapView from 'react-native-maps';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
+import Marker from '../../src/Marker';
+import Callout from '../../src/Callout';
+
 storiesOf('MapView', module)
   .add('basic', () => (
     <View style={styles.container}>
@@ -85,7 +88,7 @@ storiesOf('Marker', module)
   .add('Callout', () => (
     <View style={styles.container}>
       <MapView ref={map => (this.map = map)} region={{ latitude: 48.88, longitude: 2.32 }}>
-        <MapView.Marker
+        <Marker
           title="BAM"
           ref={marker => (this.marker = marker)}
           description="Shape the future of mobile with us"
@@ -93,12 +96,15 @@ storiesOf('Marker', module)
           onPress={() => {
             this.marker.showCallout();
           }}>
-          <MapView.Callout onPress={action('onPress callout')}>
+          <View style={{ padding: 10 }}>
+            <Text>Click Me</Text>
+          </View>
+          <Callout onPress={action('onPress callout')}>
             <View style={{ padding: 10 }}>
               <Text>Paris</Text>
             </View>
-          </MapView.Callout>
-        </MapView.Marker>
+          </Callout>
+        </Marker>
       </MapView>
     </View>
   ));
